@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
 
 function App() {
   const [color, setColor] = useState<string>();
   const [answers, setAnswers] = useState<string[]>();
   const [isIncorrect, setIsIncorrect] = useState<boolean>();
+
+  const reset = () => {
+    const correctColor = getColor();
+    setColor(correctColor);
+    setAnswers(
+      [correctColor, getColor(), getColor()].sort(() => Math.random() - 0.5)
+    );
+  };
 
   const getColor = () => {
     const colorInt = Math.floor(Math.random() * 16777216);
@@ -14,19 +21,17 @@ function App() {
 
   // Run code on mount; use empty dependency array
   useEffect(() => {
-    const correctColor = getColor();
-    setColor(correctColor);
-    setAnswers([correctColor, getColor(), getColor()]);
+    reset();
   }, []);
 
   const handleAnswerClicked = (answer: string) => {
     if (answer === color) {
       setIsIncorrect(false);
+      reset();
     } else {
       setIsIncorrect(true);
-      // reset
     }
-  }
+  };
 
   return (
     <div className="App">
@@ -39,7 +44,7 @@ function App() {
             </button>
           ))}
         </div>
-        {isIncorrect && <div className="wrong-answer">Wrong Answer</div>}
+        {isIncorrect && <div className="wrong-answer">Wrong Answer! Try again!</div>}
       </div>
     </div>
   );

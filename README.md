@@ -1,1 +1,1 @@
-This is a little app to brush up on some front-end topics.
+A little app to brush up on some front-end.

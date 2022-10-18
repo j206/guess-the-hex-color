@@ -7,7 +7,7 @@
 
 .guess-color {
   justify-content: center;
-  width: 200px;
+  width: 205px;
   height: 200px;
   margin-bottom: 10px;
 }
@@ -17,8 +17,10 @@
 }
 
 .wrong-answer {
+  padding-top: 10px;
   color: red;
   text-align: center;
+  font-family: sans-serif;
 }
 
 button {
